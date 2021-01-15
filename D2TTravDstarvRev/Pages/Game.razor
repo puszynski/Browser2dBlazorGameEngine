@@ -1,0 +1,53 @@
+﻿@page "/game"
+
+@using D2TTravDstarvRev.GameClientModels
+@using GameLibrary.Logic.Player
+
+@inject CreateNewPlayers _createNewPlayers
+
+<h3>Game</h3>
+
+@if (players is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Spritesheet</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var player in players)
+            {
+                <tr>
+                    <th>@player.ID</th>
+                    <th>@player.ImgSrc</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private List<Player> players = new List<Player>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var playerCharacters = await _createNewPlayers.Execute("Creator", "Game");
+
+
+        players = playerCharacters
+            .Select(x => new Player() 
+            { 
+                ID = x.ID, 
+                Age = x.Age, 
+                ImgSrc = x.ImageSrc 
+            })
+            .ToList();
+    }
+}
