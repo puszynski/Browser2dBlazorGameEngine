@@ -1,5 +1,5 @@
 ﻿@page "/"
-@namespace D2TTravDstarvRev.Pages
+@namespace AgarBlazorExample.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>D2TTravDstarvRev</title>
+    <title>AgarBlazorExample</title>
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
@@ -32,6 +32,26 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
-    <script src="~/js/game.js"></script>@*ADDED TEMP*@
+
+    @*DODATKOWE*@
+    <script>
+
+        window.AreaResized = (DotNetRef) => {
+            window.addEventListener("resize",
+                () => { DotNetRef.invokeMethodAsync('OnBrowserResize').then(data => data); });
+
+        }
+
+        window.GetSize = () => {
+            var x = window.innerWidth;
+            var y = window.innerHeight;
+            return [x, y];
+        };
+
+        window.SetFocusToUniverse = () => {
+            console.log("setting focus");
+            document.getElementById("universe").focus();
+        };
+    </script>
 </body>
 </html>

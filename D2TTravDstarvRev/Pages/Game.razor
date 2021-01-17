@@ -30,24 +30,59 @@ else
             }
         </tbody>
     </table>
+
+    //GAME AREA
+    <div class="camera" id="camera" @onkeydown="@KeyDown">
+        <div class="map pixelArt" id="map" width="500" height="500" >
+
+            @foreach (var player in players)
+            {
+            <div class="character @player.ID" id="character" facing="@player.Facing" walking="@player.Walking" style="transform: translate3d(@player.X_withPixelUnit, @player.Y_withPixelUnit, 0px);">
+                <img class="characterShadow pixelArt" src="/images/DemoRpgCharacterShadow.png" alt="Shadow" />
+                <img class="characterSpritesheet pixelArt" src="@player.ImgSrc" alt="Character" />
+            </div>
+            }
+
+            @*<div class="character" id="character" facing="Down" walking="true">
+                    <img class="characterShadow pixelArt" src="/images/DemoRpgCharacterShadow.png" alt="Shadow" />
+                    <img class="characterSpritesheet pixelArt faceLeft" src="/images/DemoRpgCharacter.png" alt="Character" />
+                </div>*@
+            @*todo add others objects*@
+        </div>
+    </div>
+
 }
 
 
 @code {
+    private int pixelSize = 1;
     private List<Player> players = new List<Player>();
 
     protected override async Task OnInitializedAsync()
     {
         var playerCharacters = await _createNewPlayers.Execute("Creator", "Game");
 
-
         players = playerCharacters
-            .Select(x => new Player() 
-            { 
-                ID = x.ID, 
-                Age = x.Age, 
-                ImgSrc = x.ImageSrc 
+            .Select(x => new Player()
+            {
+                ID = x.ID,
+                Age = x.Age,
+                ImgSrc = x.ImageSrc,
+                X = x.PositionOnMapPixelsX * pixelSize,
+                Y = x.PositionOnMapPixelsY * pixelSize
             })
             .ToList();
+    }
+
+    protected void KeyDown(KeyboardEventArgs e)
+    {
+        //Issue: KeyDown only is fired when input has focus.
+        //System.Console.WriteLine( $"Presset: [{e.Key}]"  );
+        switch (e.Key)
+        {
+            case " ":
+                players.FirstOrDefault().X++;
+                break;
+        }
     }
 }
