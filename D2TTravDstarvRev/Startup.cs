@@ -1,5 +1,6 @@
 using D2TTravDstarvRev.Areas.Identity;
 using D2TTravDstarvRev.Data;
+using GameLibrary.Logic.GameInitializer;
 using GameLibrary.Logic.Player;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -41,7 +42,9 @@ namespace D2TTravDstarvRev
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddSingleton<WeatherForecastService>();
+
             services.AddSingleton<CreateNewPlayers>();
+            services.AddSingleton<CreateMap>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,9 +5,7 @@ namespace GameLibrary.DomainModels
 {
     public class PlayerCharacter
     {
-        public string ID { get { return FirstName + " " + LastName; } }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string ID { get; set; }
         public bool IsMainPlayer { get; set; }
         public string ImageSrc { get; set; }
 

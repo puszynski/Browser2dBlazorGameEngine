@@ -1,8 +1,10 @@
 ﻿using GameLibrary.DomainModels;
+using GameLibrary.Logic.Player;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace GameLibrary.Logic.Player
+namespace GameLibrary.Logic.GameInitializer
 {
     public class CreateNewPlayers
     {
@@ -14,9 +16,9 @@ namespace GameLibrary.Logic.Player
             _dataCalculator = new DataCalculator();
         }
 
-        public async Task<List<PlayerCharacter>> Execute(string playerFirstName, string playerLastName)
+        public async Task<List<GameLibrary.GameModels.Player>> Execute(string playerFirstAndSecondName, int pixelSize)
         {
-            //temp - pseudo players of list from map
+            //temp - pseudo players of list from map - pseudo from DB
 
             var playersList = new List<PlayerCharacter>() { };
 
@@ -24,14 +26,14 @@ namespace GameLibrary.Logic.Player
             {
                 BirthDate = new System.DateTime(2020, 12, 25),
                 CharacterClass = Enums.ECharacterClass.Shaman,
-                FirstName = playerFirstName,
-                LastName = playerLastName,
+                ID = playerFirstAndSecondName,
                 IsMainPlayer = true,
                 ImageSrc = "/images/DemoRpgCharacter.png",
-                MapID = "demo",
+                Speed = 1,
+
+                MapID = "DemoLand",
                 PositionOnMapPixelsX = (int)6.5 * TILE_SIZE,
                 PositionOnMapPixelsY = (int)3.5 * TILE_SIZE,
-                Speed = 1
             };
 
             mainPlayer.Age = _dataCalculator.CalculateAge(mainPlayer.BirthDate);
@@ -44,14 +46,14 @@ namespace GameLibrary.Logic.Player
             {
                 BirthDate = new System.DateTime(2021, 01, 10),
                 CharacterClass = Enums.ECharacterClass.None,
-                FirstName = "Test",
-                LastName = "Bot",
+                ID = "Test Static",
                 IsMainPlayer = false,
                 ImageSrc = "/images/DemoRpgCharacter2.png",
-                MapID = "demo",
+                Speed = 1,
+
+                MapID = "DemoLand",
                 PositionOnMapPixelsX = (int)3.5 * TILE_SIZE,
                 PositionOnMapPixelsY = (int)3.5 * TILE_SIZE,
-                Speed = 1
             };
 
             otherPlayer1.Age = _dataCalculator.CalculateAge(mainPlayer.BirthDate);
@@ -61,7 +63,20 @@ namespace GameLibrary.Logic.Player
             playersList.Add(otherPlayer1);
 
 
-            return playersList;
+
+            var players = playersList
+            .Select(x => new GameLibrary.GameModels.Player()
+            {
+                ID = x.ID,
+                Age = x.Age,
+                ImgSrc = x.ImageSrc,
+                X = x.PositionOnMapPixelsX * pixelSize,
+                Y = x.PositionOnMapPixelsY * pixelSize,
+                MapID = x.MapID,
+            })
+            .ToList();
+
+            return players;
         }
     }
 }

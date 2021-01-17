@@ -1,39 +1,21 @@
 ﻿@page "/game"
 
-@using D2TTravDstarvRev.GameClientModels
-@using GameLibrary.Logic.Player
+@using GameLibrary.GameModels
+@using GameLibrary.Logic.GameInitializer
 
 @inject CreateNewPlayers _createNewPlayers
+@inject CreateMap _createMap
 
 <h3>Game</h3>
 
-@if (players is null)
+@if (players is null || map is null)
 {
     <p>Loading...</p>
 }
 else
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Spritesheet</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var player in players)
-            {
-                <tr>
-                    <th>@player.ID</th>
-                    <th>@player.ImgSrc</th>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    //GAME AREA
     <div class="camera" id="camera" @onkeydown="@KeyDown">
-        <div class="map pixelArt" id="map" width="500" height="500" >
+        <div class="map pixelArt" id="map" width="500" height="500" style="@map.CssStyle()">
 
             @foreach (var player in players)
             {
@@ -42,12 +24,6 @@ else
                 <img class="characterSpritesheet pixelArt" src="@player.ImgSrc" alt="Character" />
             </div>
             }
-
-            @*<div class="character" id="character" facing="Down" walking="true">
-                    <img class="characterShadow pixelArt" src="/images/DemoRpgCharacterShadow.png" alt="Shadow" />
-                    <img class="characterSpritesheet pixelArt faceLeft" src="/images/DemoRpgCharacter.png" alt="Character" />
-                </div>*@
-            @*todo add others objects*@
         </div>
     </div>
 
@@ -57,23 +33,18 @@ else
 @code {
     private int pixelSize = 1;
     private List<Player> players = new List<Player>();
+    private Map map;
 
     protected override async Task OnInitializedAsync()
     {
-        var playerCharacters = await _createNewPlayers.Execute("Creator", "Game");
+        players = await _createNewPlayers.Execute("Game Creator", pixelSize);
 
-        players = playerCharacters
-            .Select(x => new Player()
-            {
-                ID = x.ID,
-                Age = x.Age,
-                ImgSrc = x.ImageSrc,
-                X = x.PositionOnMapPixelsX * pixelSize,
-                Y = x.PositionOnMapPixelsY * pixelSize
-            })
-            .ToList();
+        var mapIDOfTheMainPlayer = players.Single(x => x.ID == "Game Creator").MapID; //first is MainCharacter
+        map = await _createMap.Execute(mapIDOfTheMainPlayer);
     }
 
+
+    //todo
     protected void KeyDown(KeyboardEventArgs e)
     {
         //Issue: KeyDown only is fired when input has focus.
