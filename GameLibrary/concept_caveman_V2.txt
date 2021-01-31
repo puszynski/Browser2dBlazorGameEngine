@@ -1,8 +1,12 @@
 ﻿ZAŁOŻENIA OGOLNE
+- Hook => cavmen mmo
+	jesteś caveman`em
+	survival & mmo
+	(?) brak napisow w grze - wszystko na symbolach ()
 - t & d2 & dontStarve & rev & travian
 - bardzo prosty interfejs ale mnogość opcji 
 	- survival: zbieranie jedzenia, polowania, gotowanie, ogień w nocy/schornienie, ciepło organizmu, jedzenie, pogoda, noc, śnieg, zamiecie, temperatura
-		- jak np przemarzniesz - mozesz achorowac - trzeba lezec / isc do szpitala
+		- jak np przemarzniesz - mozesz zachorowac - trzeba lezec / isc do szpitala
 		- szybkość wykonywania np drewna na ognisko zalezy od wyposazenia
 	- budowa schronienia, przedmiotów, mikstru, run - po uruchomieniu procedury jak w travian, np czekasz 3 dni // jakieś kolejkowanie - nie wymuszej expienia afk jak w t
 	- walka / expienie / itemowanie - trudność / exp potworów rośnie w zależności od liczby osob w okolicy
@@ -10,6 +14,9 @@
 	- jeden wielki świat / serwer(?) ale tak zrobiony że gracze nie koncetrują sie (długie podróże)
 	- podróż z systemu fallout`a? że np gdzieś idziesz i trwa to 4 dni? 
 	- dopracowana główna linia fabuły (jak d2 - ekstra wciagajaca z płęta) - jeśli jakieś poboczne (serie) zadań - tez z pomysłem, nie na siłe - nie rób jak nie musisz
+- podzial na "2 etapy"
+	- postacie nisko lvl np 0-50 => postaw na realizm, odtworzenie życia, prawdziwe potwory(zwierzeta)
+	- postacie wyzej lvl`owe => odzwierciedlasz rownieś "Świat wyobraźni, wieżeń ludzkich" np postać człowieka-lwa
 
 1 // days + nights => respect to night - more monsters, easy to die
 1 // 4 seasons(?)
@@ -22,7 +29,7 @@ dystans - przytrzymanie potrzebne na skupienie i siłe, ale jak za długo to sł
 
 NACJE
 
-ATRYBUT			SZAMAN									ELFKA									WOJOWNIK
+ATRYBUT			SZAMAN									WOJOWNIK DYSTANSOWY 					WOJOWNIK W ZWARCIU
 wiek			70-100 lat* + "nekromacja"				nieśmiertelna							70-100 lat*					*losujemy max wiek przy tworzeniu postaci, nie jawne
 broń			oszczepy? bomby? pułapki?				łuk/kusza								bezpośredniego zwarcia
 rozwój/exp		1x										0.5x									2x
@@ -72,6 +79,19 @@ umiejetnosci	jak ktoś idzie po za ekranem
 		- Elf koncentruje się na sprzęcie - dużo znaczy
 		- wojownik na początku nie potrzebuje mocno inwestować, dopiero na wyższych lvl`ach jak pojawiają się miecze - są ultradrogie
 
+
+DRZEWKO SKILLI
+- żeby odkryć skill trzeba zobaczyć innego gracza ktory użyje go x razy
+- w skillach wchodzi również komunikacja, poznawanie znaków wyrażeń które można wyświetlić innemu playerowi
+- ukryte - widzisz tylko dostępne opcje dla twojego lvl/umiejątności(typu m lvl) + 1 drzewko wyżej(do wyboru następne): w miare odkrywania widzisz kolejne gałęzie, synergie
+- drzewko jest generowane randomowo - nie da się określić buildów, trzeba samemu zrozumieć własne zależności
+- 20 pkt max na 1 skill
+	- skille ktore maja na drzewko 1-20 pkt - w miare uzywania ich lvl jeszcze dalej rośnie (te 1-20 to bonus)
+- możesz używać tylko skilli/umiejsetnosci ktore wybrales
+- co lvl mozesz wybrac 1 skill ale i wycofać 1 skill (pozwala na zmiany koncepcji)
+- gdy "odetniesz" ciagłość dalej lini drzewka - nie można go dalej rozwijać
+- skille daja doswiadczenie, tzn np rozpalenie ognia jest niczym zabiice 1 lvl`owego potwora (mechanizm exp z czasem zmniejsza exp za ognisko)
+
 STEROWANIE
 - wasd + myszka + skróty q e r f
 - podwójne wasd - odskok/unik w danym kierunku
@@ -84,6 +104,7 @@ INTERFACE
  - naciśnięcie ENTER - piszesz - widzą ci w zasiegu - z CAPS - krzyczysz
 
 CYKL ŻYCIA + IMORTALITY RING:
+- 400 dni == 40 lat - śr dlugosc zycia caveman
  - jak postać zginie z naturalnej śmierci => DUCH/SPIRIT przenosi się na następną postać - DUCH daje .... ? Nie ma jawnie pokazanych parametrow duszy - są ukryte pod maską - jedynie jest jakiś symbol przy ludku że jest np Jan Kowal II - 2 wcielenie czy coś..
  - naturalna śmierć nastepuje w różnym wieku => musisz jakoś pokazać wcześniej (ale dość randomowo) że postać umiera, np zmniejszać jej prędkość?
  - IMORTALITY ring 
@@ -144,6 +165,9 @@ GRYAWLNOŚĆ
 TODO STANDARDY
  - prevent spam, zablokuj kopiowanie gdy piszesz
 
+ GRAFIKA
+ - tak jak niektore przedmioty wytwarzaja jasna aure - swieci w kolo ciebie - tak przedmioty zle wytwarzaja cien, byskawice, brud
+
  MPAY - GRAFIKA:
  - pracuj na warstwach - żeby było łatwo całosć edytować
 	- kolory/cienie
@@ -154,6 +178,7 @@ TODO STANDARDY
 	- siatka wygenerowana z gry
 
 MAPY - ŚWIAT KONCEPT 1:
+- może nie średniowiecze a jakiniowcy?? caveman, cavemen?
 - zaczynasz od mroźnych krain - akcje toczą się głównie w jaskiniach - na zewnatrz jest tak zimno że rzadko sie chodzi - tylko jak jest ładna pogoda 
 	- kwintesencją tych map jest gruba garbowana skóra niedźwiedzia któa chroni przed zimnem
 	- ognisko w jaskini to mus
@@ -177,15 +202,21 @@ MAPA LEŚNA
 POTWORY
 - te najtrudniejsze są mega szybkie, atakują z nienacka, jak nie pokonają to uciekają, aktywne szczególnie w nocy
 - w obrębe jednego gatunku zróżnicowane ego - niektóre łatwiej inne nie uciekną pod koniec, fajnie jaby zależało tez od szans (liczba potworów, jak bardzo obrywa gracz)
-- w obrębie jednego gatunku różne lvl - zdażaja sie kozaki które są znacznie mocniejsze, a zdarzaja sie jakieś ułomy
+	- zwykłe
+	- bosy
+	- w obrębie jednego gatunku różne lvl - zdażaja sie kozaki które są znacznie mocniejsze, a zdarzaja sie jakieś ułomy
 - przemieszczaj grupy potworów - np amazonki jako lud koczowniczy - zmienaja miejsce - trzeba ich sie naszukac zeby natrafic (usuwa monotonie exp w tym samym miejscu)
 - exp idzie za walke nie za zabicie - czesto sa pojedynki gdzie musisz uciec ale zawsze to masz exp/skill
 - różne frakcje potworów walczą między sobą - niektóe np polują na dane (np idziesz polowac na orki a tam smok)
+- podział na dwa światy: 100% realistyczne(zwierząta) oraz Potwory wynikające z wierzeń, kultów, wyobrażeń etc
+	- realistyczny bestariusz
+	- bestariusz wyobraxni
+		- half-human / half-lion => https://artsandculture.google.com/story/dQWRIisUwtzVug
 
 LOGISTYKA/ŚWIAT
 - podróżowanie zajmuje olbrzymi czas - tak że jak chcesz iść z "europy" do "chin" to musisz poświęcić np. miesiące chodzenia
 - podróżowanie - gdy z buta - tylko za dnia - nocą wysokie ryzyko zgonu - miejscowości większe / mniejsze - bronią przed potworami
-- są też statki ale są mega drogie i jak sie an nich jest to tez plyniesz mega dlugo + szansa na śmierć z głodu/nietrafienie
+- czy istnieje jakas przyspieszona forma podrozowania?
 - respect to map - easy go to places where y can quickly die + avoid nights
 - można pływać ale mokre ciało sie wychładza i nie uda sie tobie daleko wypłynąć
 
@@ -200,11 +231,15 @@ FABUŁA - AKT 1 - Boonland
 - najpierw mieszaksz w jakini z innymi, śpisz na ziemi
 	- potem budujesz sobie łóżko
 	- przedmioty mozesz przetrzymywac u NPC który ma jakąś ochrone i skrzynie - trzeba płacić
-- potem wychodzi na wędrówke - musisz sie wyposażyć w tarpa,
-	- możeszmieć jakieś osła czy coś żeby przenieść sprzęt ze skrzyni od NPC
+- potem wychodzi na wędrówke - musisz sie wyposażyć w jakąś forme schronienia,
+	- możesz mieć jakieś osła czy coś żeby przenieść sprzęt ze skrzyni od NPC
 - potem budujesz swój obóz przy morzu - tam budujesz łódź
 - misją jest zbuowanie własnej łodzi, zgromadzenie surowców i płynięcie dalej na Mainland - można budować 1 osobowe lub wielo z innymi graczami
 	lódź ma tez miejsce na rzeczy
+
+QUESTY:
+- ciekawe inspiracje
+	- d2 - pokonanie starożytnych na górze arreat
 
 
 ŚMIERĆ (w walce):
@@ -217,17 +252,11 @@ SILNIK
 - podział dużych map np rzekami - przechodząc mostem zmieniasz mape (w tle)
 - rzeczy które nie są istoetne dla gry - wykonuj na samym frontendzie(bez uderzania do serwera)
 
-RZCZYWISTOŚĆ
-- bronie wczesne srendiowiecze - https://calisia.pl/miecze-to-wymysl-rodem-z-hollywood-czym-walczono-w-sredniowieczu-warto-zajrzec-na-zawodzie,7167
-- walka oszczepem - https://www.youtube.com/watch?v=GBFKzAnt1kg
-- miecze to elita - tylko kilka dobrych mieczy na świat gry
-- wynalezienie prochu => Rzecz miała miejsce około IX wieku i jak w wielu wypadkach odkrycia dokonano przypadkowo. Źródła donoszą, że stoją za nim mnisi-alchemicy, próbujący stworzyć miksturę zapewniającą życie wieczne, połączyli drzewny węgiel, siarkę i saletrę. Niewiele więcej wiadomo o okolicznościach, można się natomiast domyślać, że we właściwościach tej mieszanki zorientowano się z wielkim hukiem. 
-
-
+SILNIK OPTYMALIZACJA
+- ne wszystko musi byc przekazywane dos erwera db - muszi np sprawdzic jakie iemy ma memebr (w plecaku) ale nie musisz sprawdzac gdzie-  to moze byc zapisane lokalnie
 
 
 ELECTRON - pozwala uruchomić strone www(html,js,css) jako apka na kompie
-
 
 MARKETING:
 - musisz zrobić gdzieś na jakimś forum zajawke że robisz np. wykop.pl
@@ -239,6 +268,9 @@ MARKETING:
 - rób filmiki np jak robisz dźwięk do gry (nietypowy)
 - GDD - game documentation document - zaplanuj jakiś plan - co najpierw, co później/kiedy EarlyAccess - mozę patronate
 
+DZWIĘK
+- dzwięk tła (łąki, las, szum wody) - gdy zmieniasz lokalizacje jest bardzo glosny ale z czasem sie scisza tak ze po chwili nie slyszysz prawie nic (nie meczy plus symuluje wyczucie zmyslow)
+
 GDD:
 1. html/ts/css - opracować dodawanie wielu graczy (bez obsługi innych)  + różne spriteSheety - ZROBIONE
 2. wykorzystanie serwera => później => + kolizje + po najechaniu wyświtlamy dane (imie i nazwisko, lvl?, wiek)
@@ -246,7 +278,3 @@ GDD:
 4. Budowa świata "Nooblandi"
 5. Koncept gry na fora
 6. EARLY ACCESS
-
-
-IDEA
-- duzo ludzi na 2 ekranie ogląda YT lub Twittera czy TV w ramach "zapychacza" - może jakieś zapychacz z gry? może radio?

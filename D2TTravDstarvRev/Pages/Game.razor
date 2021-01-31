@@ -3,8 +3,10 @@
 @using GameLibrary.GameModels
 @using GameLibrary.Logic.GameInitializer
 
-@inject CreateNewPlayers _createNewPlayers
-@inject CreateMap _createMap
+@inject IJSRuntime _jsRuntime;
+@*@inject Game Game;*@
+@inject CreateNewPlayers _createNewPlayers;
+@inject CreateMap _createMap;
 
 <h3>Game</h3>
 
@@ -14,15 +16,18 @@
 }
 else
 {
-    <div class="camera" id="camera" @onkeydown="@KeyDown">
+    <div class="camera" id="camera" @onkeydown="@KeyDown" @onmousemove="@TrackMouse" @onmousewheel="@MouseWheel">
         <div class="map pixelArt" id="map" width="500" height="500" style="@map.CssStyle()">
 
             @foreach (var player in players)
             {
-            <div class="character @player.ID" id="character" facing="@player.Facing" walking="@player.Walking" style="transform: translate3d(@player.X_withPixelUnit, @player.Y_withPixelUnit, 0px);">
-                <img class="characterShadow pixelArt" src="/images/DemoRpgCharacterShadow.png" alt="Shadow" />
-                <img class="characterSpritesheet pixelArt" src="@player.ImgSrc" alt="Character" />
-            </div>
+                <div class="character @player.ID" id="character" facing="@player.Facing" walking="@player.Walking" style="transform: translate3d(@player.X_withPixelUnit, @player.Y_withPixelUnit, 0px);">
+                    <img class="characterShadow pixelArt" src="/images/DemoRpgCharacterShadow.png" alt="Shadow" />
+                    <img class="characterSpritesheet pixelArt" src="@player.ImgSrc" alt="Character" />
+                </div>
+
+                <p>@player.X_withPixelUnit</p>
+                <p>@player.Y_withPixelUnit</p>
             }
         </div>
     </div>
@@ -31,29 +36,95 @@ else
 
 
 @code {
-    private int pixelSize = 1;
-    private List<Player> players = new List<Player>();
-    private Map map;
+    int pixelSize = 1;
+    bool _running;
 
+    List<Player> players = new List<Player>();
+    Map map;
+
+    //GAME START HERE
     protected override async Task OnInitializedAsync()
     {
-        players = await _createNewPlayers.Execute("Game Creator", pixelSize);
 
-        var mapIDOfTheMainPlayer = players.Single(x => x.ID == "Game Creator").MapID; //first is MainCharacter
-        map = await _createMap.Execute(mapIDOfTheMainPlayer);
+        players = await _createNewPlayers.Execute("Game Creator", pixelSize);
+        var mainPlayer = players.Single(x => x.ID == "Game Creator");
+        map = await _createMap.Execute(mainPlayer.MapID);
+
+        await _jsRuntime.InvokeAsync<object>("initializeFromCSharp", DotNetObjectReference.Create(this));
+        await base.OnInitializedAsync();
     }
 
 
-    //todo
-    protected void KeyDown(KeyboardEventArgs e)
+    [JSInvokable]
+    public async ValueTask CSharpGameLoop(float timeStamp)
     {
-        //Issue: KeyDown only is fired when input has focus.
-        //System.Console.WriteLine( $"Presset: [{e.Key}]"  );
+        if (_running)
+        {
+            return;
+        }
+
+        _running = true;
+        try
+        {
+            foreach (var player in players)
+            {
+                player.Move();
+
+                //todo - żeby zmiiany zaktualizowaly widok => chyba to pomoze => https://stackoverflow.com/questions/55775060/blazor-component-refresh-parent-when-model-is-updated-from-child-component
+            }
+            this.StateHasChanged(); //refresh website manualy
+            //await Game.RunGameLoop(timeStamp);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine(e);
+        }
+        finally
+        {
+            _running = false;
+        }
+
+    }
+
+    [JSInvokable]
+    public async ValueTask CSharpOnKeyDown(int key)
+    {
+
+        var mainPlayer = players.Single(x => x.ID == "Game Creator");
+
+        if (!mainPlayer.HeldKeysDirestions.Contains(key))
+            mainPlayer.HeldKeysDirestions.Add(key);
+    }
+
+    [JSInvokable]
+    public async ValueTask CSharpOnKeyUp(int key)
+    {
+        var mainPlayer = players.Single(x => x.ID == "Game Creator");
+
+        if (mainPlayer.HeldKeysDirestions.Contains(key))
+            mainPlayer.HeldKeysDirestions.Remove(key);
+
+    }
+
+
+    // NOTE: blazor events must be located on some html elements, so alternatevley you use JSInterop (sending events from JS to CSharp)
+    protected void KeyDown(KeyboardEventArgs e) //tego nie łapie..
+    {
         switch (e.Key)
         {
             case " ":
                 players.FirstOrDefault().X++;
                 break;
         }
+    }
+    protected void TrackMouse(MouseEventArgs e)
+    {
+        var bx = e.ClientX;
+        var by = e.ClientY;
+    }
+    protected void MouseWheel(WheelEventArgs e)
+    {
+        var t = -(float)(e.DeltaY / 100.0);
     }
 }

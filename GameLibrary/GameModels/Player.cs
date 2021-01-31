@@ -1,22 +1,70 @@
 ﻿using GameLibrary.Enums;
+using GameLibrary.GameModels.Base;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
 namespace GameLibrary.GameModels
 {
-    public class Player
+    public class Player : PlayerBase
     {
         public string ID { get; set; }
         public string ImgSrc { get; set; }
         public int Age { get; set; }
 
-        public string MapID { get; set; }
-        public int X { get; set; } //todo => validate + send to client + (in background async save to db)
-        public int Y { get; set; }
-
-        public string X_withPixelUnit { get { return X + "px"; } }
-        public string Y_withPixelUnit { get { return Y + "px"; } }
+        public string MapID { get; set; }        
 
 
+        public List<int> HeldKeysDirestions { get; set; }
         public bool Walking { get; set; } = false;
-        public EDirection Facing { get; set; } = EDirection.Down;
+        public EDirection Facing { get; set; }
+
+        public Player() : base(ECharacterClass.None,
+                               1,
+                               50,
+                               50,
+                               50)
+        {
+            HeldKeysDirestions = new List<int>();
+            Facing = EDirection.Down;
+        }
+
+        //todo move Move() into UpdateInGameLoop()
+        public void Move()
+        {
+            if (HeldKeysDirestions.Any())
+            {
+                if (!ValidateMode())
+                    return;                
+
+                switch ((EKeysDirections)HeldKeysDirestions.First())
+                {
+                    case EKeysDirections.Up:
+                        Y -= Speed;
+                        break;
+                    case EKeysDirections.Down:
+                        Y += Speed;
+                        break;
+                    case EKeysDirections.Left:
+                        X -= Speed;
+                        break;
+                    case EKeysDirections.Right:
+                        X += Speed;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public bool ValidateMode()
+        {
+            return true;
+            //czy to ma sens??
+            //kolizje tu??
+        }
+
+        //proba odwiezenia widoku => https://stackoverflow.com/questions/55775060/blazor-component-refresh-parent-when-model-is-updated-from-child-component
     }
 }

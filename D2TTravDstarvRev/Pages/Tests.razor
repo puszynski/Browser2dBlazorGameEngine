@@ -1,0 +1,92 @@
+﻿@page "/tests"
+
+<h3>Test 1: counter</h3>
+<p>Current count: @currentCount</p>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<h3>Test 2: fetchData</h3>
+@using D2TTravDstarvRev.Data
+@inject WeatherForecastService ForecastService
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<p>call .NET methods from JavaScript: https://docs.microsoft.com/pl-pl/aspnet/core/blazor/call-dotnet-from-javascript?view=aspnetcore-5.0</p>
+
+<h3>Test 4:call .NET from js</h3>
+<h4>Static method</h4>
+<button type="button" class="btn btn-primary" onclick="exampleJsFunctions.returnArrayAsyncJs()">
+    @*call JS method that call .NET: ReturnArrayAsync()*@
+    Trigger .NET static method ReturnArrayAsync
+</button>
+
+
+
+<h4>Instance method</h4>
+@inject IJSRuntime JS
+<button type="button" class="btn btn-primary" @onclick="TriggerNetInstanceMethod">
+    Trigger .NET instance method HelloHelper.SayHello
+</button>
+
+
+
+
+@code {
+    private int currentCount = 0;
+    private WeatherForecast[] forecasts;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    ///////////////////////////////////////////////////////////////////
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+
+
+    ///////////////////////////////////////////////////////////////////
+    //call static method from js
+    [JSInvokable]
+    //[JSInvokable("DifferentMethodName")] by default method name called from js == .net method
+    public static Task<int[]> ReturnArrayAsync()
+    {
+        return Task.FromResult(new int[] { 1, 2, 3 });
+    }
+
+    //call instance method
+    public async Task TriggerNetInstanceMethod()
+    {
+        var exampleJsInterop = new D2TTravDstarvRev.JsInteropClasses.ExampleJsInterop(JS);
+
+        await exampleJsInterop.CallHelloHelperSayHello("Blazor");
+    }
+
+}

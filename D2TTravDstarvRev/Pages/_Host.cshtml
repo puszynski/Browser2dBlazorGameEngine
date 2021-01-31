@@ -32,6 +32,53 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
-    <script src="~/js/game.js"></script>@*ADDED TEMP*@
+    <script>
+        //examples for Page => Text.razor
+        window.exampleJsFunctions = {
+            showPrompt: function (text) {
+                return prompt(text, 'Type your name here');
+            },
+
+            displayWelcome: function (welcomeMessage) {
+                document.getElementById('welcome').innerText = welcomeMessage;
+            },
+
+            returnArrayAsyncJs: function () {
+                DotNet.invokeMethodAsync('D2TTravDstarvRev', 'ReturnArrayAsync')
+                    .then(data => {
+                        data.push(4);
+                        console.log(data);
+                    });
+            },
+
+            sayHello: function (dotnetHelper) {
+                return dotnetHelper.invokeMethodAsync('SayHello')
+                    .then(r => console.log(r));
+            }
+        };
+    </script>
+    <script>        
+        //Game start here (triggered from CSharp page => Game.razor)
+        function initializeFromCSharp(instance) {
+            window.theInstance = instance;
+            window.requestAnimationFrame(gameLoop);
+        }
+
+        function gameLoop(timeStamp) {
+            window.requestAnimationFrame(gameLoop);
+
+            window.onkeydown = e => {
+                //console.info(e);
+                return window.theInstance.invokeMethodAsync('CSharpOnKeyDown', e.keyCode);
+            };
+
+            window.onkeyup = e => {
+                //console.info(e);
+                return window.theInstance.invokeMethodAsync('CSharpOnKeyUp', e.keyCode);
+            };
+
+            theInstance.invokeMethodAsync('CSharpGameLoop', timeStamp);
+        }
+    </script>
 </body>
 </html>

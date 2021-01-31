@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D2TTravDstarvRev", "D2TTrav
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameLibrary", "GameLibrary\GameLibrary.csproj", "{84231369-DB6A-467A-9E6C-7F0842F7AC4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgarBlazorExample", "AgarBlazorExample\AgarBlazorExample.csproj", "{E7CE5FFD-B35B-4137-95C2-19AFAC7DCA46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2dTopDownGameWithImgMap", "..\Games\2dTopDownGameWithImgMap\2dTopDownGameWithImgMap.csproj", "{9ACC79C7-7566-4C20-814E-A83D7B2B4AF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{84231369-DB6A-467A-9E6C-7F0842F7AC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84231369-DB6A-467A-9E6C-7F0842F7AC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84231369-DB6A-467A-9E6C-7F0842F7AC4B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7CE5FFD-B35B-4137-95C2-19AFAC7DCA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7CE5FFD-B35B-4137-95C2-19AFAC7DCA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7CE5FFD-B35B-4137-95C2-19AFAC7DCA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7CE5FFD-B35B-4137-95C2-19AFAC7DCA46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ACC79C7-7566-4C20-814E-A83D7B2B4AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ACC79C7-7566-4C20-814E-A83D7B2B4AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ACC79C7-7566-4C20-814E-A83D7B2B4AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ACC79C7-7566-4C20-814E-A83D7B2B4AF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
