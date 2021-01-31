@@ -72,7 +72,7 @@
     top: calc( var(--grid-cell) * -6);
 }
 
-.character[walking="true"] .characterSpritesheet {
+.character[walking="True"] .characterSpritesheet {
     animation: walkAnimation 0.5s steps(4) infinite; /* play animation each 1s, for loops, infinitie*/
 }
 

@@ -6,7 +6,7 @@ namespace GameLibrary.Logic.GameInitializer
 {
     public class CreateMap
     {
-        public async Task<GameLibrary.GameModels.Map> Execute(string mapID)
+        public async Task<GameLibrary.GameModels.Map> Execute(string mapID, GameModels.Camera camera)
         {
             //pseudo DB
             var demoMapTiles = new List<List<int>>() 
@@ -30,7 +30,7 @@ namespace GameLibrary.Logic.GameInitializer
             };
 
             //mapping
-            var gameMap = new GameLibrary.GameModels.Map(map.ID);
+            var gameMap = new GameLibrary.GameModels.Map(map.ID, camera);
 
             return gameMap;
         }

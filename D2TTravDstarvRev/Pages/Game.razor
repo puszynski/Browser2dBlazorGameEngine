@@ -17,43 +17,73 @@
 else
 {
     <div class="camera" id="camera" @onkeydown="@KeyDown" @onmousemove="@TrackMouse" @onmousewheel="@MouseWheel">
-        <div class="map pixelArt" id="map" width="500" height="500" style="@map.CssStyle()">
+        <div class="map pixelArt" 
+             id="map" 
+             width="500" 
+             height="500" 
+             style="@map.CssStyle()">
 
-            @foreach (var player in players)
+            @foreach (var player in players.OrderBy(x => x.Y))
             {
-                <div class="character @player.ID" id="character" facing="@player.Facing" walking="@player.Walking" style="transform: translate3d(@player.X_withPixelUnit, @player.Y_withPixelUnit, 0px);">
-                    <img class="characterShadow pixelArt" src="/images/DemoRpgCharacterShadow.png" alt="Shadow" />
-                    <img class="characterSpritesheet pixelArt" src="@player.ImgSrc" alt="Character" />
-                </div>
+                <div class="character @player.ID" 
+                     id="character" 
+                     facing="@player.Facing" 
+                     walking="@player.Walking.ToString()" 
+                     style="transform:translate3d(@player.X_toDisplayPx,@player.Y_toDisplayPx, 0px);">
 
-                <p>@player.X_withPixelUnit</p>
-                <p>@player.Y_withPixelUnit</p>
+                    <img class="characterShadow pixelArt" 
+                         src="/images/DemoRpgCharacterShadow.png" 
+                         alt="Shadow" />
+                    <img class="characterSpritesheet pixelArt" 
+                         src="@player.ImgSrc" 
+                         alt="Character" />
+                </div>                
             }
         </div>
     </div>
 
+
+    <div>
+        @foreach (var player in players)
+        {
+            <p>@player.ID: position(@player.X, @player.Y)</p>
+            <br />
+        }
+    </div>
 }
 
 
 @code {
-    int pixelSize = 1;
+    int _pixelSize = 1;
     bool _running;
 
     List<Player> players = new List<Player>();
     Map map;
+    Camera camera;
 
     //GAME START HERE
     protected override async Task OnInitializedAsync()
     {
 
-        players = await _createNewPlayers.Execute("Game Creator", pixelSize);
+        players = await _createNewPlayers.Execute("Game Creator", _pixelSize);
         var mainPlayer = players.Single(x => x.ID == "Game Creator");
-        map = await _createMap.Execute(mainPlayer.MapID);
+        camera = new Camera(160, 144, mainPlayer);
+        map = await _createMap.Execute(mainPlayer.MapID, camera);
 
         await _jsRuntime.InvokeAsync<object>("initializeFromCSharp", DotNetObjectReference.Create(this));
         await base.OnInitializedAsync();
     }
 
+    [JSInvokable]
+    public async ValueTask UpdatePixelSize(int pixelSize)
+    {
+        if (_pixelSize != pixelSize)
+        {
+            GlobalGameData.PixelSize = pixelSize;
+            _pixelSize = pixelSize;
+        }
+
+    }
 
     [JSInvokable]
     public async ValueTask CSharpGameLoop(float timeStamp)
@@ -68,12 +98,11 @@ else
         {
             foreach (var player in players)
             {
-                player.Move();
-
+                player.MoveAndSetDircetion();
                 //todo - żeby zmiiany zaktualizowaly widok => chyba to pomoze => https://stackoverflow.com/questions/55775060/blazor-component-refresh-parent-when-model-is-updated-from-child-component
             }
+            camera.UpdateCameraPosition();
             this.StateHasChanged(); //refresh website manualy
-            //await Game.RunGameLoop(timeStamp);
         }
         catch (Exception e)
         {

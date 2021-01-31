@@ -4,15 +4,18 @@ namespace GameLibrary.GameModels
 {
     public class Map
     {
+        readonly Camera _camera;
+
         public string ID { get; set; }
-        public int TileSize { get { return 16; } } //todo move to settings - const for all maps
         public string BackgroundImage { get; set; } // dimensions of map image must be multiply of 16
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public Map(string id)
+        public Map(string id, Camera camera)
         {
             ID = id;
+            _camera = camera;
+
             BackgroundImage = ID + "Map.png"; ;
 
             try
@@ -31,7 +34,8 @@ namespace GameLibrary.GameModels
         public string CssStyle()
             => $@"background-image: url(../images/{BackgroundImage});
                   background-size: 100%;
-                  width: calc({Width / TileSize} * var(--grid-cell));
-                  height: calc({Height / TileSize} * var(--grid-cell));";
+                  width: calc({Width / GlobalGameData.TileSize} * var(--grid-cell));
+                  height: calc({Height / GlobalGameData.TileSize} * var(--grid-cell));
+                  transform:translate3d({_camera.TranslateHTMLElementX},{_camera.TranslateHTMLElementY}, 0px);";
     }
 }
