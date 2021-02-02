@@ -220,6 +220,10 @@ LOGISTYKA/ŚWIAT
 - respect to map - easy go to places where y can quickly die + avoid nights
 - można pływać ale mokre ciało sie wychładza i nie uda sie tobie daleko wypłynąć
 
+SURVIVAL
+- picie / jedzenie / ciepło vs regeneracja życia/staminy/many
+- jak za dużo jesz robisz sie gruby?
+
 PREMIUM
 - waluta premium za którą można (gracze non premium mogą zdobyć je za ukonczone eventy)
 	-wykupywać miesięczny dostęp na wyspy premium 
@@ -254,6 +258,7 @@ SILNIK
 
 SILNIK OPTYMALIZACJA
 - ne wszystko musi byc przekazywane dos erwera db - muszi np sprawdzic jakie iemy ma memebr (w plecaku) ale nie musisz sprawdzac gdzie-  to moze byc zapisane lokalnie
+- MAPA- gdy na danej mapie robi się za dużo graczy - zró mechanizmy które nie pozwalają kolejnym wejść na teren (ale tamci mogą wyjśc)
 
 
 ELECTRON - pozwala uruchomić strone www(html,js,css) jako apka na kompie
