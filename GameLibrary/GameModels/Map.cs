@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace GameLibrary.GameModels
 {
@@ -7,17 +8,24 @@ namespace GameLibrary.GameModels
         readonly Camera _camera;
 
         public string ID { get; set; }
-        public string BackgroundImage { get; set; } // dimensions of map image must be multiply of 16
+        public string BackgroundImage { get; set; } // dimensions of map image must be multiply of tileSize => 16 px 
+        public List<List<int>> TilesMatrix { get; set; } //int can be represented as EMapTile
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public Map(string id, Camera camera)
+        public Map(string id, Camera camera, List<List<int>> tilesMatrix)
         {
-            ID = id;
             _camera = camera;
+            
+            ID = id;
+            TilesMatrix = tilesMatrix;
 
-            BackgroundImage = ID + "Map.png"; ;
+            BackgroundImage = ID + "Map.png";
+            SetMapWidthAndHeight();
+        }
 
+        void SetMapWidthAndHeight()
+        {
             try
             {
                 var img = Image.FromFile($@"wwwroot/images/{BackgroundImage}");

@@ -140,7 +140,17 @@ BILANS GOLD/PRZEDMIOTY/TRADE
 - brak klasycznej skrzyni - nosisz przy sobie, chowasz w terenie lub chowasz w domu (później)
 - rynek / giełda - 
 
+
+SURWIWAL
+- dzień 55 minut - noc 5 minut - dziennie trzeba zjeść min. 1/2 posiłki albo jest sie skrajnie glodnym + np min 2 litry wody
+- picie / jedzenie / ciepło vs regeneracja życia/staminy/many
+
+
 GRYAWLNOŚĆ
+- rozgrywka dzieli sie na kilka etapów 
+	- najpierw low lvl`e koncentrują się na przetrwaniu (survival) 
+	- wyższe lvl stają się już na tyle silni ze moga wiecej expic/walczyc 
+	- naj-wyższe lvl przechodza do krainy wyobrażni czrów magi
 - questy liniowe jak w d2(w chuj dużo, kolejne wymagają wyższych lvl, inne współpracy w grupie - trzeba doskilować żeby iść dalej) + poboczne
 - questy wymuszają liniową wędrówke przez świat, np masz udać sie do nowego miasta, co trwa długo np kilkanaście godzin a po drodze są problemy/zagadki - zawsze możesz wrócić ale się nie opłaca 
 	- (gracze wysoko lvl`owi nie meiszają sie z nisko)!!! ważne żeby nie burzyć bilansu wartości gotówki/broni
@@ -220,9 +230,7 @@ LOGISTYKA/ŚWIAT
 - respect to map - easy go to places where y can quickly die + avoid nights
 - można pływać ale mokre ciało sie wychładza i nie uda sie tobie daleko wypłynąć
 
-SURVIVAL
-- picie / jedzenie / ciepło vs regeneracja życia/staminy/many
-- jak za dużo jesz robisz sie gruby?
+
 
 PREMIUM
 - waluta premium za którą można (gracze non premium mogą zdobyć je za ukonczone eventy)
@@ -249,6 +257,7 @@ QUESTY:
 ŚMIERĆ (w walce):
 - nie tracisz umiejętności + tracisz lvl, tracisz cały staff ?? (staff można odzyskać - zrobić tak zeby nikt nie byłw stanie wsyztkiego zabrać, np 1 zrobja na sobie i wsio)
 - może dla postaci po śmierci zrobić kraine "Niebo" - na przyszłość
+- śmierć w walce - amnezja i tracisz część rzeczy/umiejetnosc zdobytych przez ostanie np 0-15 minut (zapisy do bazy z mniejszą częstoliwością)
  
 SILNIK
 - sinalR - wysyła tylko info o najbliższym otoczeniu - jak nie ma innych graczy, nie podaje ich danych;

@@ -1,0 +1,1 @@
+﻿1. Zmiana szybkości poruszania się postaci. Gdy gra jest aktywna, przejdziesz do innej zakładki i wrócisz do zakładki Game - postać porusz się znacznie szybciej

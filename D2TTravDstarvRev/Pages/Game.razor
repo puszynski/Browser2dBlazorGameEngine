@@ -4,7 +4,6 @@
 @using GameLibrary.Logic.GameInitializer
 
 @inject IJSRuntime _jsRuntime;
-@*@inject Game Game;*@
 @inject CreateNewPlayers _createNewPlayers;
 @inject CreateMap _createMap;
 
@@ -16,11 +15,18 @@
 }
 else
 {
-    <div class="camera" id="camera" @onkeydown="@KeyDown" @onmousemove="@TrackMouse" @onmousewheel="@MouseWheel">
+    <div class="camera" 
+         id="camera" 
+         style="width: @(_cameraWidth)px;
+                height: @(_cameraHegiht)px;
+                overflow: hidden;
+                background: yellow;
+                position: relative;">
+
         <div class="map pixelArt" 
              id="map" 
-             width="500" 
-             height="500" 
+             width="@map.Width" 
+             height="@map.Height" 
              style="@map.CssStyle()">
 
             @foreach (var player in players.OrderBy(x => x.Y))
@@ -46,7 +52,7 @@ else
     <div>
         @foreach (var player in players)
         {
-            <p>@player.ID: position(@player.X, @player.Y)</p>
+            <p>@player.ID: position(@player.X, @player.Y)</p>            
             <br />
         }
     </div>
@@ -55,11 +61,14 @@ else
 
 @code {
     int _pixelSize = 1;
-    bool _running;
+    int _cameraWidth = 800;
+    int _cameraHegiht = 600;
+
 
     List<Player> players = new List<Player>();
     Map map;
     Camera camera;
+
 
     //GAME START HERE
     protected override async Task OnInitializedAsync()
@@ -67,7 +76,7 @@ else
 
         players = await _createNewPlayers.Execute("Game Creator", _pixelSize);
         var mainPlayer = players.Single(x => x.ID == "Game Creator");
-        camera = new Camera(160, 144, mainPlayer);
+        camera = new Camera(_cameraWidth, _cameraHegiht, mainPlayer);
         map = await _createMap.Execute(mainPlayer.MapID, camera);
 
         await _jsRuntime.InvokeAsync<object>("initializeFromCSharp", DotNetObjectReference.Create(this));
@@ -88,32 +97,13 @@ else
     [JSInvokable]
     public async ValueTask CSharpGameLoop(float timeStamp)
     {
-        if (_running)
+        foreach (var player in players)
         {
-            return;
+            player.MoveAndSetDirectionInGameLoop(map.TilesMatrix);
         }
+        camera.UpdateCameraPositionInGameLoop();
 
-        _running = true;
-        try
-        {
-            foreach (var player in players)
-            {
-                player.MoveAndSetDircetion();
-                //todo - żeby zmiiany zaktualizowaly widok => chyba to pomoze => https://stackoverflow.com/questions/55775060/blazor-component-refresh-parent-when-model-is-updated-from-child-component
-            }
-            camera.UpdateCameraPosition();
-            this.StateHasChanged(); //refresh website manualy
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-            Console.WriteLine(e);
-        }
-        finally
-        {
-            _running = false;
-        }
-
+        this.StateHasChanged(); //refresh blazor data
     }
 
     [JSInvokable]
@@ -133,27 +123,5 @@ else
 
         if (mainPlayer.HeldKeysDirestions.Contains(key))
             mainPlayer.HeldKeysDirestions.Remove(key);
-
-    }
-
-
-    // NOTE: blazor events must be located on some html elements, so alternatevley you use JSInterop (sending events from JS to CSharp)
-    protected void KeyDown(KeyboardEventArgs e) //tego nie łapie..
-    {
-        switch (e.Key)
-        {
-            case " ":
-                players.FirstOrDefault().X++;
-                break;
-        }
-    }
-    protected void TrackMouse(MouseEventArgs e)
-    {
-        var bx = e.ClientX;
-        var by = e.ClientY;
-    }
-    protected void MouseWheel(WheelEventArgs e)
-    {
-        var t = -(float)(e.DeltaY / 100.0);
     }
 }

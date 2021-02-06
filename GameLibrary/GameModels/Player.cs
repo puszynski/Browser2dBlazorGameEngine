@@ -1,5 +1,6 @@
 ﻿using GameLibrary.Enums;
 using GameLibrary.GameModels.Base;
+using GameLibrary.Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,36 +31,42 @@ namespace GameLibrary.GameModels
             Walking = false;
         }
 
-        //todo move Move() into UpdateInGameLoop()
-        public void MoveAndSetDircetion()
+        public void MoveAndSetDirectionInGameLoop(List<List<int>> mapTileMatrix)
         {
             if (HeldKeysDirestions.Any())
-            {
-                if (!ValidateMode())
-                    return;
-
-                Walking = true;
-
+            {        
                 switch ((EKeysDirections)HeldKeysDirestions.Last())
                 {
                     case EKeysDirections.Up:
+                        if (MoveValidator.IsColision(X, Y - Speed, mapTileMatrix))
+                            break;
                         Y -= Speed;
                         Facing = EDirection.Up;
+                        Walking = true;
                         break;
 
                     case EKeysDirections.Down:
-                        Facing = EDirection.Down;
+                        if (MoveValidator.IsColision(X, Y + Speed, mapTileMatrix))
+                            break;
                         Y += Speed;
+                        Facing = EDirection.Down;
+                        Walking = true;
                         break;
 
                     case EKeysDirections.Left:
-                        Facing = EDirection.Left;
+                        if (MoveValidator.IsColision(X - Speed, Y, mapTileMatrix))
+                            break;
                         X -= Speed;
+                        Facing = EDirection.Left;
+                        Walking = true;
                         break;
 
                     case EKeysDirections.Right:
-                        Facing = EDirection.Right;
+                        if (MoveValidator.IsColision(X + Speed, Y, mapTileMatrix))
+                            break;
                         X += Speed;
+                        Facing = EDirection.Right;
+                        Walking = true;
                         break;
 
                     default:
@@ -73,13 +80,11 @@ namespace GameLibrary.GameModels
 
         }
 
-        public bool ValidateMode()
+        public bool IsNoColision(int newPositionX, int newPositionY)
         {
             return true;
             //czy to ma sens??
             //kolizje tu??
         }
-
-        //proba odwiezenia widoku => https://stackoverflow.com/questions/55775060/blazor-component-refresh-parent-when-model-is-updated-from-child-component
     }
 }

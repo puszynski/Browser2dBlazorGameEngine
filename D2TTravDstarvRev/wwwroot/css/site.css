@@ -27,14 +27,6 @@
     }
 }
 
-.camera {
-    width: calc( var(--pixel-size) * 160);
-    height: calc( var(--pixel-size) * 144);
-    overflow: hidden;
-    background: yellow;
-    position: relative;
-}
-
 .map {
     image-rendering: pixelated;
     position: relative;

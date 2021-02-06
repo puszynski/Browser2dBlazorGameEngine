@@ -22,14 +22,15 @@ namespace GameLibrary.GameModels
         public string TranslateHTMLElementY { get; set; }
 
 
-        public void UpdateCameraPosition()
+        public void UpdateCameraPositionInGameLoop()
         {
-            //CAMERA SECTON(camera size: 160 * 144)
             var cameraOffsetX = _widthPx / 2;
             var cameraOffsetY = _heightPx / 2;
 
-            TranslateHTMLElementX = $"{-_mainPlayer.X * GlobalGameData.PixelSize + cameraOffsetX * GlobalGameData.PixelSize}px";
-            TranslateHTMLElementY = $"{-_mainPlayer.Y * GlobalGameData.PixelSize + cameraOffsetY * GlobalGameData.PixelSize}px";
+            //TODO - uzależnić od kierunku w który patrzysz
+
+            TranslateHTMLElementX = $"{-_mainPlayer.X * GlobalGameData.PixelSize + cameraOffsetX}px";
+            TranslateHTMLElementY = $"{-_mainPlayer.Y * GlobalGameData.PixelSize + cameraOffsetY}px";
         }
     }
 }
