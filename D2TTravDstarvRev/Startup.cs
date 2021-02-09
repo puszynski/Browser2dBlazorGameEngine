@@ -44,6 +44,7 @@ namespace D2TTravDstarvRev
             services.AddSingleton<WeatherForecastService>();
 
             services.AddSingleton<CreateNewPlayers>();
+            services.AddSingleton<CreateNewPlayer>();
             services.AddSingleton<CreateMap>();
         }
 
@@ -75,6 +76,7 @@ namespace D2TTravDstarvRev
                 endpoints.MapControllers();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
+                endpoints.MapHub<GameHub>(GameHub.HubUrl);
             });
         }
     }

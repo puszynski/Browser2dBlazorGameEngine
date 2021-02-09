@@ -16,11 +16,11 @@ namespace GameLibrary.Logic.Player
         {
             //todo in future - check after class promotion 
 
-            if (characterClass == ECharacterClass.Elf || isGameCreator)
+            if (characterClass == ECharacterClass.Shaman || isGameCreator)
                 return null;
 
             var rnd = new Random();
-            return rnd.Next(90, 101); //90-100
+            return rnd.Next(350, 451); //350-451 => 35-45 lat
         }
 
         public EPlayerCharacterStatus SetPlayerStatus(int age, int? ageOfDeath)

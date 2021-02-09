@@ -56,7 +56,6 @@
 
             var pixelSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--pixel-size"));
             theInstance.invokeMethodAsync('UpdatePixelSize', pixelSize);
-
             theInstance.invokeMethodAsync('CSharpGameLoop', timeStamp);
         }
     </script>

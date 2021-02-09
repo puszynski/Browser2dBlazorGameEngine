@@ -15,8 +15,9 @@
 	- podróż z systemu fallout`a? że np gdzieś idziesz i trwa to 4 dni? 
 	- dopracowana główna linia fabuły (jak d2 - ekstra wciagajaca z płęta) - jeśli jakieś poboczne (serie) zadań - tez z pomysłem, nie na siłe - nie rób jak nie musisz
 - podzial na "2 etapy"
-	- postacie nisko lvl np 0-50 => postaw na realizm, odtworzenie życia, prawdziwe potwory(zwierzeta)
+	- postacie nisko lvl np 0-50 => REALIZM & 70% SURVIVAL 30% WALKA (BARDZO RYZYKOWNA NA TYM ETAPIE), odtworzenie życia, prawdziwe potwory(zwierzeta)
 	- postacie wyzej lvl`owe => odzwierciedlasz rownieś "Świat wyobraźni, wieżeń ludzkich" np postać człowieka-lwa
+- śmierć - można albo zginąć permanentie (walka z jakimś mega trudnym bosem) albo być mocno ranionym (wtedy możemy tracić cześć ekwipunku, trafiamy do "szpitala" i tzreba czekać np 7 godzin aż sie zregenerujemy)
 
 1 // days + nights => respect to night - more monsters, easy to die
 1 // 4 seasons(?)
@@ -91,13 +92,37 @@ DRZEWKO SKILLI
 - co lvl mozesz wybrac 1 skill ale i wycofać 1 skill (pozwala na zmiany koncepcji)
 - gdy "odetniesz" ciagłość dalej lini drzewka - nie można go dalej rozwijać
 - skille daja doswiadczenie, tzn np rozpalenie ognia jest niczym zabiice 1 lvl`owego potwora (mechanizm exp z czasem zmniejsza exp za ognisko)
+- PKT SKILLI NA DANE DRZEWKO tylko z umiejętności tego drzewka - np rozpalanie ogniska/budowa schoroeniniaa daja pkt do drzewka survivalu
+
+DRZEWKO SKILI
+	MOWA/KOMUNIKACJA:
+		1. Tak/Nie 
+			2. Ty Ja Polować
+	WALKA_DYSTANS:
+	CRAFT_ITEMS:
+		1. Pozyskanie wnętrzności (wątroba, serce etc) z potwora 
+			3. Pozyskanie mięsa (synergia => możoiwość użycia narzędzi)
+			4. Suszenie mięsa przy ognisku (nie psuje sie)
+			5. Oskórowanie (niegarbowana skóra)
+				20. Garbowanie skóry (nie gnije)
+			5. Wykonywanie ostrzy/włóczni za pomocą ognia (opalanie)
+	SZAMANIZM_WYTWARZANIE_MIKSTUR
+			20. Trucizna (do zatrówania strzał, plujek broni - po ranieniu zabija w kilka sekund) 
+	SURVIVAL
+		1. PODTRZYMANIE OGNIA
+			5. ROZPALENIE OGNIA Z TARCIA KIJÓW (DŁUGO TRWA, MUSI BYĆ SUCHO)
+				15. UŻYCIE KRZESIWA DO ROZPALENIA OGNIA (KAMIENI)
+		1. Różne schornienia
+
+		NIE:
+		- brak łuków etc
 
 STEROWANIE
 - wasd + myszka + skróty q e r f
 - podwójne wasd - odskok/unik w danym kierunku
 - gdy celujesz(PPM) to wolniej sie poruszasz - urozmaici rozgrywke
 - z sziftem krótka szarża - ale tylko raz na jakiś czas i zrobić tak żeby nie oplacało się z tym normalnie przemieszczać
-- auto-aim ? działa ale gorzej, nie trafia zawsze etc
+- F1-F12 1-9-0 => komunikacja
 
 INTERFACE
  - czysty ekran nic nie ma

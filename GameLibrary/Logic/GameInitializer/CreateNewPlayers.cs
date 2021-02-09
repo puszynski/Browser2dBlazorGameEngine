@@ -1,4 +1,5 @@
 ﻿using GameLibrary.DomainModels;
+using GameLibrary.GameModels;
 using GameLibrary.Logic.Player;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,14 @@ namespace GameLibrary.Logic.GameInitializer
 {
     public class CreateNewPlayers
     {
-        private readonly DataCalculator _dataCalculator;
-        private const int TILE_SIZE = 16;
+        readonly DataCalculator _dataCalculator;
 
         public CreateNewPlayers()
         {
             _dataCalculator = new DataCalculator();
         }
 
-        public async Task<List<GameLibrary.GameModels.Player>> Execute(string playerFirstAndSecondName, int pixelSize)
+        public async Task<List<GameLibrary.GameModels.Player>> Execute(string playerFirstAndSecondName)
         {
             //temp - pseudo players of list from map - pseudo from DB
 
@@ -32,8 +32,8 @@ namespace GameLibrary.Logic.GameInitializer
                 Speed = 1,
 
                 MapID = "DemoLand",
-                PositionOnMapPixelsX = (int)6.5 * TILE_SIZE,
-                PositionOnMapPixelsY = (int)3.5 * TILE_SIZE,
+                PositionOnMapPixelsX = (int)6.5 * GlobalGameData.TileSize,
+                PositionOnMapPixelsY = (int)3.5 * GlobalGameData.TileSize,
             };
 
             mainPlayer.Age = _dataCalculator.CalculateAge(mainPlayer.BirthDate);
@@ -52,8 +52,8 @@ namespace GameLibrary.Logic.GameInitializer
                 Speed = 1,
 
                 MapID = "DemoLand",
-                PositionOnMapPixelsX = (int)3.5 * TILE_SIZE,
-                PositionOnMapPixelsY = (int)3.5 * TILE_SIZE,
+                PositionOnMapPixelsX = (int)3.5 * GlobalGameData.TileSize,
+                PositionOnMapPixelsY = (int)3.5 * GlobalGameData.TileSize,
             };
 
             otherPlayer1.Age = _dataCalculator.CalculateAge(mainPlayer.BirthDate);
@@ -70,8 +70,8 @@ namespace GameLibrary.Logic.GameInitializer
                 ID = x.ID,
                 Age = x.Age,
                 ImgSrc = x.ImageSrc,
-                X = x.PositionOnMapPixelsX * pixelSize,
-                Y = x.PositionOnMapPixelsY * pixelSize,
+                X = x.PositionOnMapPixelsX * GlobalGameData.PixelSize,
+                Y = x.PositionOnMapPixelsY * GlobalGameData.PixelSize,
                 MapID = x.MapID,
             })
             .ToList();
