@@ -6,13 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Client.JSInterop" Version="0.19.1" />
-    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+    <Compile Remove="GameModels\Creatures\**" />
+    <Compile Remove="GameModels\Players\**" />
+    <EmbeddedResource Remove="GameModels\Creatures\**" />
+    <EmbeddedResource Remove="GameModels\Players\**" />
+    <None Remove="GameModels\Creatures\**" />
+    <None Remove="GameModels\Players\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GameModels\Creatures\" />
-    <Folder Include="GameModels\Players\" />
+    <PackageReference Include="AspNetCore.Client.JSInterop" Version="0.19.1" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

@@ -1,1 +1,4 @@
-﻿1. Zmiana szybkości poruszania się postaci. Gdy gra jest aktywna, przejdziesz do innej zakładki i wrócisz do zakładki Game - postać porusz się znacznie szybciej
+﻿1. Zmiana szybkości poruszania się postaci. Gdy gra jest aktywna, 
+   przejdziesz do innej zakładki i wrócisz do zakładki Game - postać porusz się znacznie szybciej
+	=> związane z PixelSize 
+2. Miganie mapy podczas poruszania postaci
