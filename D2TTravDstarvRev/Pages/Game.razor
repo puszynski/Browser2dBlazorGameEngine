@@ -213,6 +213,8 @@ else
     {
         if (_isGameOn && players.Any(x => x.ID == _mainPlayerID))
         {
+            //TODO - NA PLAYER X/Y BEZ PIXEL_SIZE - OBSŁUGUJEMY TO DOPIERO NA WIDOKU!! BO SKALOWANIE NIE DZIAŁĄ DOBRZE
+
             var sendingPlayerData = System.Text.Json.JsonSerializer.Serialize<Player>(players.Single(x => x.ID == _mainPlayerID));
             await _hubConnection.SendAsync("Broadcast", _mainPlayerID, sendingPlayerData);
         }

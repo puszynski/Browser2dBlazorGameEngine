@@ -98,17 +98,24 @@ DRZEWKO SKILI
 	MOWA/KOMUNIKACJA:
 		1. Tak/Nie 
 			2. Ty Ja Polować
+			 19. Umiejetność widzenia innych wiadokości pisemnych 
+				20. Umiejętność pisania (wiadomości tekstowych)
 	WALKA_DYSTANS:
 	CRAFT_ITEMS:
 		1. Pozyskanie wnętrzności (wątroba, serce etc) z potwora 
 			3. Pozyskanie mięsa (synergia => możoiwość użycia narzędzi)
 			4. Suszenie mięsa przy ognisku (nie psuje sie)
 			5. Oskórowanie (niegarbowana skóra)
-				20. Garbowanie skóry (nie gnije)
+					20. Garbowanie skóry (nie gnije)
 			5. Wykonywanie ostrzy/włóczni za pomocą ognia (opalanie)
+
+				10. Obróbka krzemienia
 	SZAMANIZM_WYTWARZANIE_MIKSTUR
+		10. Kremy / tłuszcze pomagają z zimnem
 			20. Trucizna (do zatrówania strzał, plujek broni - po ranieniu zabija w kilka sekund) 
 	SURVIVAL
+	0. Umiejśtność znalezienia suchego drewna / innych materiałów na rozpalenie ogniska
+	0. Umiejętnośc znalezienia osłonietego od wiatru miejsca
 		1. PODTRZYMANIE OGNIA
 			5. ROZPALENIE OGNIA Z TARCIA KIJÓW (DŁUGO TRWA, MUSI BYĆ SUCHO)
 				15. UŻYCIE KRZESIWA DO ROZPALENIA OGNIA (KAMIENI)
@@ -247,6 +254,7 @@ POTWORY
 	- realistyczny bestariusz
 	- bestariusz wyobraxni
 		- half-human / half-lion => https://artsandculture.google.com/story/dQWRIisUwtzVug
+- na najwyższych szczebach jako caveman (neandertalczyk) - spotykasz bardziej zaawansowanych homo sapiens (który wypierają neandertalczyków)
 
 LOGISTYKA/ŚWIAT
 - podróżowanie zajmuje olbrzymi czas - tak że jak chcesz iść z "europy" do "chin" to musisz poświęcić np. miesiące chodzenia
